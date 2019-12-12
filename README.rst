@@ -12,6 +12,13 @@ The package is installable through PIP::
 
 Usage
 -----
+add local timezone support
+default is 0
+
+os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '0')
+os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '1')
+
+--------------------------------------------------
 
 The DSN format is similar to that of regular Postgres::
 
