@@ -15,8 +15,9 @@ Usage
 add local timezone support
 default is 0
 
-os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '0')
-os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '1')
+   os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '0')
+
+   os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '1')
 
 --------------------------------------------------
 
