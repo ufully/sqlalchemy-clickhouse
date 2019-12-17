@@ -180,7 +180,7 @@ class ClickHouseDialect(default.DefaultDialect):
     @classmethod
     def dbapi(cls):
         try:
-            import sqlalchemy_clickhouse.connector as connector
+            import sqlalchemy_clickhouse_timezone.connector as connector
         except:
             import connector
         return connector

@@ -4,36 +4,37 @@ from os import path, getenv
 from setuptools import setup
 from codecs import open
 
-VERSION = [0, 1, 5]
+VERSION = [0, 1, 3]
 readme = open('README.rst').read()
 
 setup(
-    name='sqlalchemy-clickhouse',
+    name='sqlalchemy_clickhouse_timezone',
     version='.'.join('%d' % v for v in VERSION[0:3]),
-    description='ClickHouse SQLAlchemy Dialect',
+    description='ClickHouse SQLAlchemy Dialect with timezone support',
     long_description = readme,
-    author = 'Cloudflare, Inc.',
-    author_email = 'mvavrusa@cloudflare.com',
+    author = '21499836@qq.com',
+    author_email = '21499836@qq.com',
     license = 'Apache License, Version 2.0',
-    url = 'https://github.com/cloudflare/sqlalchemy-clickhouse',
-    keywords = "db database cloud analytics clickhouse",
-    download_url = 'https://github.com/cloudflare/sqlalchemy-clickhouse/releases/tag/v0.1.5',
+    url = 'https://github.com/ufully/sqlalchemy-clickhouse-timezone',
+    keywords = "db database cloud analytics clickhouse with tiemzone support",
+    download_url = 'https://github.com/ufully/sqlalchemy-clickhouse-timezone/releases/tag/v0.1.0',
     install_requires = [
         'sqlalchemy>=1.0.0',
-        'infi.clickhouse_orm>=1.0.0'
+        'infi.clickhouse_orm==1.0.4',
+        'tzlocal>=2.0.0'
     ],
     packages=[
-        'sqlalchemy_clickhouse',
+        'sqlalchemy_clickhouse_timezone',
     ],
     package_dir={
-        'sqlalchemy_clickhouse': '.',
+        'sqlalchemy_clickhouse_timezone': '.',
     },
     package_data={
-        'sqlalchemy_clickhouse': ['LICENSE.txt'],
+        'sqlalchemy_clickhouse_timezone': ['LICENSE.txt'],
     },
     entry_points={
         'sqlalchemy.dialects': [
-            'clickhouse=sqlalchemy_clickhouse.base',
+            'clickhouse=sqlalchemy_clickhouse_timezone.base',
         ]
     },
     classifiers = [

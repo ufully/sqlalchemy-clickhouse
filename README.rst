@@ -1,25 +1,41 @@
-sqlalchemy-clickhouse
-=====================
 
-ClickHouse dialect for SQLAlchemy.
+sqlalchemy-clickhouse-timezone
+
+add timezone support
 
 Installation
 ------------
 
 The package is installable through PIP::
 
-   pip install sqlalchemy-clickhouse
+   pip install sqlalchemy-clickhouse-timezone
 
 Usage
 -----
-add local timezone support
-default is 0
+setting the environ param to start timezone support
 
-   os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '0')
+  default is '0' using pytz.utc
 
-   os.environ.setdefault('CLICKHOUSE_USE_LOCAL_TIMEZONE', '1')
+  'CLICKHOUSE_USE_TIMEZONE': '0' => using utc
+
+  'CLICKHOUSE_USE_TIMEZONE': '1' => using system timezone
+
+  'CLICKHOUSE_USE_TIMEZONE': 'Asia/Shanghai' => using configed Asian/Shanghai
+
+
+configed
+   os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', '0')
+   os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', '1')
+   os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', 'Asia/Shanghai')
 
 --------------------------------------------------
+'infi.clickhouse_orm==1.0.4'
+--------------------------------------------------
+
+original project usage...
+--------------------------------------------------
+
+ClickHouse dialect for SQLAlchemy.
 
 The DSN format is similar to that of regular Postgres::
 

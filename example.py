@@ -2,6 +2,16 @@
 
 # Use connector directly
 import connector
+import os
+
+os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE','Asia/Chongqing')
+
+# cursor = connector.connect('default', db_url='http://default:borui2020@localhost:8123/default').cursor()
+
+cursor.execute('SELECT NOW()')
+print(cursor.fetchone())
+print('-------------------------------')
+
 cursor = connector.connect('default').cursor()
 cursor.execute('SELECT * FROM test LIMIT 10')
 print(cursor.fetchone())

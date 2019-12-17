@@ -15,6 +15,7 @@ from infi.clickhouse_orm.database import Database
 # fix local timezone
 from tzlocal import get_localzone
 import os
+import pytz
 # fixed local timezone
 
 # PEP 249 module globals
@@ -352,6 +353,14 @@ class Cursor(object):
     def poll(self):
         pass
 
+    def get_using_timezone(self):
+      configed = os.getenv('CLICKHOUSE_USE_TIMEZONE')
+      if configed == '0':
+        return 0, pytz.utc
+      if configed == '1':
+        return 1, get_localzone()
+      return 1, pytz.timezone(configed)
+
     def _process_response(self, response):
         """ Update the internal state with the data from the response """
         assert self._state == self._STATE_RUNNING, "Should be running if processing response"
@@ -364,9 +373,9 @@ class Cursor(object):
             for fi in r._fields:
                 val = getattr(r, fi)
 
-                clickhouseUseLocalTimezone = int(os.getenv('CLICKHOUSE_USE_LOCAL_TIMEZONE', '0'))
-                if clickhouseUseLocalTimezone and (r._fields[fi].db_type == 'DateTime' or r._fields[fi].db_type == 'Date'):
-                    val = val.astimezone(get_localzone())
+                timeZoneOpened, usingTimezone = self.get_using_timezone()
+                if timeZoneOpened and (r._fields[fi].db_type == 'DateTime' or r._fields[fi].db_type == 'Date'):
+                    val = val.astimezone(usingTimezone)
 
                 vals.append(val)
             data.append(vals)
@@ -374,3 +383,7 @@ class Cursor(object):
         self._data = data
         self._columns = cols
         self._state = self._STATE_FINISHED
+    
+
+
+
