@@ -24,8 +24,11 @@ setting the environ param to start timezone support
 
 
 configed
+
    os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', '0')
+   
    os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', '1')
+   
    os.environ.setdefault('CLICKHOUSE_USE_TIMEZONE', 'Asia/Shanghai')
 
 --------------------------------------------------
