@@ -4,7 +4,7 @@ from os import path, getenv
 from setuptools import setup
 from codecs import open
 
-VERSION = [0, 1, 3]
+VERSION = [0, 1, 4]
 readme = open('README.rst').read()
 
 setup(
