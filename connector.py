@@ -354,7 +354,7 @@ class Cursor(object):
         pass
 
     def get_using_timezone(self):
-      configed = os.getenv('CLICKHOUSE_USE_TIMEZONE')
+      configed = os.getenv('CLICKHOUSE_USE_TIMEZONE', '0')
       if configed == '0':
         return 0, pytz.utc
       if configed == '1':
